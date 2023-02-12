@@ -15,18 +15,6 @@ return {
       }
     end,
   },
-  {
-    "simrat39/rust-tools.nvim",
-    config = function()
-      local rt = require "rust-tools"
-
-      rt.setup {
-        server = {
-          on_attach = function(_, _) end,
-        },
-      }
-    end,
-  },
   ["hashivim/vim-terraform"] = {},
   -- Languages
   {
@@ -34,6 +22,15 @@ return {
     config = function()
       require("go").setup {
         run_in_floaterm = true,
+      }
+    end,
+  },
+  {
+    "simrat39/rust-tools.nvim",
+    after = "mason-lspconfig.nvim",
+    config = function()
+      require("rust-tools").setup {
+        server = astronvim.lsp.server_settings "rust_analyzer",
       }
     end,
   },

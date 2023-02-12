@@ -71,6 +71,9 @@ local config = {
   },
   lsp = {
     servers = {},
+    skip_setup = {
+      "rust_analyzer",
+    },
     formatting = {
       format_on_save = {
         enabled = true, -- enable or disable format on save globally
