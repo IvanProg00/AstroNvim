@@ -34,6 +34,11 @@ return {
       }
     end,
   },
+  {
+    "saecki/crates.nvim",
+    requires = { "nvim-lua/plenary.nvim" },
+    config = function() require("crates").setup() end,
+  },
   -- Git
   { "akinsho/git-conflict.nvim", tag = "*", config = function() require("git-conflict").setup() end },
   -- Debug

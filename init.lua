@@ -120,6 +120,13 @@ local config = {
       local null_ls = require "null-ls"
       local b = null_ls.builtins
 
+      require("crates").setup {
+        null_ls = {
+          enabled = true,
+          name = "crates.nvim",
+        },
+      }
+
       config.sources = {
         b.diagnostics.golangci_lint,
         b.diagnostics.markdownlint,
@@ -130,6 +137,7 @@ local config = {
         b.formatting.shfmt,
         b.formatting.gofumpt,
       }
+
       return config
     end,
     treesitter = {
