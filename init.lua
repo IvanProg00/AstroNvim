@@ -160,6 +160,8 @@ local config = {
         "fish",
         "bash",
         "dockerfile",
+        "sql",
+        "http",
       },
     },
     ["mason-lspconfig"] = {
