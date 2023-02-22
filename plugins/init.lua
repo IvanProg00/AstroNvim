@@ -24,6 +24,7 @@ return {
         run_in_floaterm = true,
       }
     end,
+    ft = { "go" },
   },
   {
     "simrat39/rust-tools.nvim",
@@ -33,6 +34,7 @@ return {
         server = astronvim.lsp.server_settings "rust_analyzer",
       }
     end,
+    ft = { "rust" },
   },
   {
     "saecki/crates.nvim",
@@ -49,6 +51,7 @@ return {
       "nvim-treesitter/nvim-treesitter",
       "antoinemadec/FixCursorHold.nvim",
       "nvim-neotest/neotest-go",
+      "rouge8/neotest-rust",
     },
     config = function()
       local neotest_ns = vim.api.nvim_create_namespace "neotest"
@@ -77,5 +80,9 @@ return {
   {
     "theHamsta/nvim-dap-virtual-text",
     config = function() require("nvim-dap-virtual-text").setup() end,
+  },
+  {
+    "leoluz/nvim-dap-go",
+    config = function() require("dap-go").setup() end,
   },
 }

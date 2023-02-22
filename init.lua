@@ -143,6 +143,7 @@ local config = {
         b.formatting.goimports,
         b.formatting.shfmt,
         b.formatting.gofumpt,
+        b.formatting.csharpier,
       }
 
       return config
@@ -159,6 +160,7 @@ local config = {
         "toml",
         "javascript",
         "python",
+        "c_sharp",
         "html",
         "css",
         "help",
@@ -194,6 +196,7 @@ local config = {
         "yaml-language-server",
         "pylint",
         "golangci-lint-langserver",
+        "csharpier",
         "terraform-ls",
         "dockerfile-language-server",
         "gopls",
@@ -270,8 +273,7 @@ local config = {
       },
     },
   },
-  polish = function()
-  end,
+  polish = function() end,
 }
 
 return config
