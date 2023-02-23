@@ -22,9 +22,13 @@ return {
     config = function()
       require("go").setup {
         run_in_floaterm = true,
+        lsp_inlay_hints = {
+          enable = false,
+          only_current_line = false,
+          only_current_line_autocmd = "CursorMoved",
+        },
       }
     end,
-    ft = { "go" },
   },
   {
     "simrat39/rust-tools.nvim",
