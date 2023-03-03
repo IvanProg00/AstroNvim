@@ -144,6 +144,7 @@ local config = {
         b.formatting.shfmt,
         b.formatting.gofumpt,
         b.formatting.csharpier,
+        b.formatting.taplo,
       }
 
       return config
@@ -205,6 +206,7 @@ local config = {
         "typescript-language-server",
         "shfmt",
         "markdownlint",
+        "taplo",
       },
     },
     ["mason-nvim-dap"] = {
