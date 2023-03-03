@@ -3,17 +3,15 @@ return {
     "goolord/alpha-nvim",
     opts = function(_, opts)
       opts.section.header.val = {
-        " █████  ███████ ████████ ██████   ██████",
-        "██   ██ ██         ██    ██   ██ ██    ██",
-        "███████ ███████    ██    ██████  ██    ██",
-        "██   ██      ██    ██    ██   ██ ██    ██",
-        "██   ██ ███████    ██    ██   ██  ██████",
-        " ",
-        "    ███    ██ ██    ██ ██ ███    ███",
-        "    ████   ██ ██    ██ ██ ████  ████",
-        "    ██ ██  ██ ██    ██ ██ ██ ████ ██",
-        "    ██  ██ ██  ██  ██  ██ ██  ██  ██",
-        "    ██   ████   ████   ██ ██      ██",
+        [[                                                                       ]],
+        [[  ██████   █████                   █████   █████  ███                  ]],
+        [[ ░░██████ ░░███                   ░░███   ░░███  ░░░                   ]],
+        [[  ░███░███ ░███   ██████   ██████  ░███    ░███  ████  █████████████   ]],
+        [[  ░███░░███░███  ███░░███ ███░░███ ░███    ░███ ░░███ ░░███░░███░░███  ]],
+        [[  ░███ ░░██████ ░███████ ░███ ░███ ░░███   ███   ░███  ░███ ░███ ░███  ]],
+        [[  ░███  ░░█████ ░███░░░  ░███ ░███  ░░░█████░    ░███  ░███ ░███ ░███  ]],
+        [[  █████  ░░█████░░██████ ░░██████     ░░███      █████ █████░███ █████ ]],
+        [[ ░░░░░    ░░░░░  ░░░░░░   ░░░░░░       ░░░      ░░░░░ ░░░░░ ░░░ ░░░░░  ]],
       }
       return opts
     end,
@@ -128,7 +126,7 @@ return {
   { "ray-x/guihua.lua" },
   {
     "folke/todo-comments.nvim",
-    requires = "nvim-lua/plenary.nvim",
+    dependencies = "nvim-lua/plenary.nvim",
     config = function() require("todo-comments").setup {} end,
   },
   {
@@ -144,7 +142,7 @@ return {
   -- Languages
   {
     "ray-x/go.nvim",
-    requires = {
+    dependencies = {
       "ray-x/guihua.lua",
       "neovim/nvim-lspconfig",
       "nvim-treesitter/nvim-treesitter",
@@ -166,8 +164,7 @@ return {
   "simrat39/rust-tools.nvim",
   {
     "saecki/crates.nvim",
-    requires = { "nvim-lua/plenary.nvim" },
-    config = function() require("crates").setup() end,
+    dependencies = { "nvim-lua/plenary.nvim" },
   },
   -- Git
   { "akinsho/git-conflict.nvim", config = function() require("git-conflict").setup {} end },
