@@ -122,12 +122,13 @@ return {
       ensure_installed = { "delve" },
     },
   },
-  --- Editor
+  -- Editor
   { "ray-x/guihua.lua" },
   {
     "folke/todo-comments.nvim",
     dependencies = "nvim-lua/plenary.nvim",
     config = function() require("todo-comments").setup {} end,
+    event = "VeryLazy",
   },
   {
     "ray-x/lsp_signature.nvim",
@@ -138,7 +139,6 @@ return {
       }
     end,
   },
-  "hashivim/vim-terraform",
   -- Languages
   {
     "ray-x/go.nvim",
@@ -171,7 +171,7 @@ return {
   -- Test
   {
     "nvim-neotest/neotest",
-    requires = {
+    dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
       "antoinemadec/FixCursorHold.nvim",
