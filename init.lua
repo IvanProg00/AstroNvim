@@ -1,72 +1,17 @@
 local config = {
   updater = {
     remote = "origin",
-    channel = "stable",
+    channel = "nightly",
     version = "latest",
-    branch = "main",
+    branch = "nightly",
     commit = nil,
     pin_plugins = nil,
     skip_prompts = false,
     show_changelog = true,
-    auto_reload = false,
     auto_quit = false,
   },
-  colorscheme = "default_theme",
-  highlights = {},
-  header = {
-    " █████  ███████ ████████ ██████   ██████",
-    "██   ██ ██         ██    ██   ██ ██    ██",
-    "███████ ███████    ██    ██████  ██    ██",
-    "██   ██      ██    ██    ██   ██ ██    ██",
-    "██   ██ ███████    ██    ██   ██  ██████",
-    " ",
-    "    ███    ██ ██    ██ ██ ███    ███",
-    "    ████   ██ ██    ██ ██ ████  ████",
-    "    ██ ██  ██ ██    ██ ██ ██ ████ ██",
-    "    ██  ██ ██  ██  ██  ██ ██  ██  ██",
-    "    ██   ████   ████   ██ ██      ██",
-  },
-  default_theme = {
-    colors = {
-      fg = "#abb2bf",
-      bg = "#1e222a",
-    },
-    highlights = function(hl)
-      local C = require "default_theme.colors"
-
-      hl.Normal = { fg = C.fg, bg = C.bg }
-
-      hl.DiagnosticError.italic = true
-      hl.DiagnosticHint.italic = true
-      hl.DiagnosticInfo.italic = true
-      hl.DiagnosticWarn.italic = true
-
-      return hl
-    end,
-    plugins = {
-      aerial = true,
-      beacon = false,
-      bufferline = true,
-      cmp = true,
-      dashboard = true,
-      highlighturl = true,
-      hop = false,
-      indent_blankline = true,
-      lightspeed = false,
-      ["neo-tree"] = true,
-      notify = true,
-      ["nvim-tree"] = false,
-      ["nvim-web-devicons"] = true,
-      rainbow = true,
-      symbols_outline = false,
-      telescope = true,
-      treesitter = true,
-      vimwiki = false,
-      ["which-key"] = true,
-    },
-  },
+  colorscheme = "astrodark",
   diagnostics = {
-    virtual_text = true,
     underline = true,
   },
   lsp = {
@@ -76,8 +21,8 @@ local config = {
     },
     formatting = {
       format_on_save = {
-        enabled = true, -- enable or disable format on save globally
-        allow_filetypes = { -- enable format on save for specified filetypes only
+        enabled = true,
+        allow_filetypes = {
           "go",
           "rust",
           "lua",
@@ -92,7 +37,7 @@ local config = {
         -- ["<leader>lf"] = false -- disable formatting keymap
       },
     },
-    ["server-settings"] = {
+    config = {
       yamlls = {
         settings = {
           yaml = {
@@ -105,14 +50,12 @@ local config = {
         },
       },
     },
+    setup_handlers = {
+      rust_analyzer = function(_, opts) require("rust-tools").setup { server = opts } end,
+    },
   },
   mappings = {
     n = {
-      ["<leader>bb"] = { "<cmd>tabnew<cr>", desc = "New tab" },
-      ["<leader>bc"] = { "<cmd>BufferLinePickClose<cr>", desc = "Pick to close" },
-      ["<leader>bj"] = { "<cmd>BufferLinePick<cr>", desc = "Pick to jump" },
-      ["<leader>bt"] = { "<cmd>BufferLineSortByTabs<cr>", desc = "Sort by tabs" },
-      -- Test
       ["<leader>Trr"] = { ':lua require("neotest").run.run()<CR>', desc = "Test" },
       ["<leader>Trf"] = { ':lua require("neotest").run.run(vim.fn.expand("%"))<CR>', desc = "Test file" },
       ["<leader>Trs"] = { ':lua require("neotest").run.stop()<CR>' },
@@ -122,158 +65,50 @@ local config = {
     },
     t = {},
   },
-  plugins = {
-    ["null-ls"] = function(config)
-      local null_ls = require "null-ls"
-      local b = null_ls.builtins
-
-      require("crates").setup {
-        null_ls = {
-          enabled = true,
-          name = "crates.nvim",
-        },
-      }
-
-      config.sources = {
-        b.diagnostics.golangci_lint,
-        b.diagnostics.markdownlint,
-
-        b.formatting.stylua,
-        b.formatting.prettier,
-        b.formatting.goimports,
-        b.formatting.shfmt,
-        b.formatting.gofumpt,
-        b.formatting.csharpier,
-        b.formatting.taplo,
-      }
-
-      return config
-    end,
-    treesitter = {
-      ensure_installed = {
-        "lua",
-        "go",
-        "gomod",
-        "gowork",
-        "rust",
-        "json",
-        "yaml",
-        "toml",
-        "javascript",
-        "python",
-        "c_sharp",
-        "html",
-        "css",
-        "help",
-        "vim",
-        "markdown",
-        "fish",
-        "bash",
-        "dockerfile",
-        "sql",
-        "http",
-      },
+  lazy = {
+    defaults = { lazy = true },
+    git = {
+      timeout = 40,
     },
-    ["mason-lspconfig"] = {
-      ensure_installed = {
-        "sumneko_lua",
-        "rust_analyzer",
-      },
-    },
-    ["mason-null-ls"] = {
-      ensure_installed = {
-        "actionlint",
-        "autopep8",
-        "eslint-lsp",
-        "gitlint",
-        "prettier",
-        "lua-language-server",
-        "css-lsp",
-        "html-lsp",
-        "typescript-language-server",
-        "emmet-ls",
-        "json-lsp",
-        "stylua",
-        "yaml-language-server",
-        "pylint",
-        "golangci-lint-langserver",
-        "csharpier",
-        "terraform-ls",
-        "dockerfile-language-server",
-        "gopls",
-        "gofumpt",
-        "goimports",
-        "typescript-language-server",
-        "shfmt",
-        "markdownlint",
-        "taplo",
-      },
-    },
-    ["mason-nvim-dap"] = {
-      ensure_installed = { "delve" },
-    },
-    ["neo-tree"] = {
-      enable_git_status = true,
-      enable_diagnostics = true,
-      filesystem = {
-        filtered_items = {
-          hide_dotfiles = false,
-          hide_gitignored = false,
+    performance = {
+      rtp = {
+        disabled_plugins = {
+          "tohtml",
+          "gzip",
+          "matchit",
+          "zipPlugin",
+          "netrwPlugin",
+          "tarPlugin",
+          "matchparen",
         },
       },
-    },
-    gitsigns = {
-      current_line_blame = true,
-      current_line_blame_opts = {
-        ignore_whitespace = true,
-        delay = 600,
-      },
-    },
-  },
-  luasnip = {
-    filetype_extend = {},
-    vscode = {
-      paths = {},
-    },
-  },
-  cmp = {
-    source_priority = {
-      nvim_lsp = 1000,
-      luasnip = 750,
-      buffer = 500,
-      path = 250,
     },
   },
   heirline = {
+    -- -- Customize different separators between sections
     -- separators = {
+    --   breadcrumbs = " > ",
     --   tab = { "", "" },
     -- },
-    -- -- -- Customize colors for each element each element has a `_fg` and a `_bg`
+    -- -- Customize colors for each element each element has a `_fg` and a `_bg`
     -- colors = function(colors)
-    --   colors.git_branch_fg = astronvim.get_hlgroup "Conditional"
+    --   colors.git_branch_fg = require("astronvim.utils").get_hlgroup "Conditional"
     --   return colors
     -- end,
+    -- -- Customize attributes of highlighting in Heirline components
     -- attributes = {
     --   -- styling choices for each heirline element, check possible attributes with `:h attr-list`
     --   git_branch = { bold = true }, -- bold the git branch statusline component
     -- },
+    -- -- Customize if icons should be highlighted
     -- icon_highlights = {
     --   breadcrumbs = false, -- LSP symbols in the breadcrumbs
     --   file_icon = {
     --     winbar = false, -- Filetype icon in the winbar inactive windows
     --     statusline = true, -- Filetype icon in the statusline
+    --     tabline = true, -- Filetype icon in the tabline
     --   },
     -- },
-  },
-  ["which-key"] = {
-    register = {
-      n = {
-        ["<leader>"] = {
-          ["b"] = { name = "Buffer" },
-          ["T"] = { name = "Test" },
-        },
-      },
-    },
   },
   polish = function() end,
 }

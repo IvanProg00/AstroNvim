@@ -1,4 +1,129 @@
 return {
+  {
+    "goolord/alpha-nvim",
+    opts = function(_, opts)
+      opts.section.header.val = {
+        " █████  ███████ ████████ ██████   ██████",
+        "██   ██ ██         ██    ██   ██ ██    ██",
+        "███████ ███████    ██    ██████  ██    ██",
+        "██   ██      ██    ██    ██   ██ ██    ██",
+        "██   ██ ███████    ██    ██   ██  ██████",
+        " ",
+        "    ███    ██ ██    ██ ██ ███    ███",
+        "    ████   ██ ██    ██ ██ ████  ████",
+        "    ██ ██  ██ ██    ██ ██ ██ ████ ██",
+        "    ██  ██ ██  ██  ██  ██ ██  ██  ██",
+        "    ██   ████   ████   ██ ██      ██",
+      }
+      return opts
+    end,
+  },
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+    opts = function(_, config)
+      local null_ls = require "null-ls"
+      local b = null_ls.builtins
+
+      require("crates").setup {
+        null_ls = {
+          enabled = true,
+          name = "crates.nvim",
+        },
+      }
+
+      config.sources = {
+        b.diagnostics.golangci_lint,
+        b.diagnostics.markdownlint,
+
+        b.formatting.stylua,
+        b.formatting.prettier,
+        b.formatting.goimports,
+        b.formatting.shfmt,
+        b.formatting.gofumpt,
+        b.formatting.csharpier,
+        b.formatting.taplo,
+      }
+
+      return config
+    end,
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = {
+        "lua",
+        "go",
+        "gomod",
+        "gowork",
+        "rust",
+        "json",
+        "yaml",
+        "toml",
+        "javascript",
+        "python",
+        "c_sharp",
+        "html",
+        "css",
+        "help",
+        "vim",
+        "markdown",
+        "fish",
+        "bash",
+        "dockerfile",
+        "sql",
+        "http",
+      },
+    },
+  },
+  {
+    "williamboman/mason-lspconfig.nvim",
+    opts = {
+      ensure_installed = {
+        "lua_ls",
+        "rust_analyzer",
+      },
+    },
+  },
+  {
+    "jay-babu/mason-null-ls.nvim",
+    opts = {
+      automatic_installation = true,
+      automatic_setup = true,
+      ensure_installed = {
+        "actionlint",
+        "autopep8",
+        "eslint-lsp",
+        "gitlint",
+        "prettier",
+        "lua-language-server",
+        "css-lsp",
+        "html-lsp",
+        "typescript-language-server",
+        "emmet-ls",
+        "json-lsp",
+        "stylua",
+        "yaml-language-server",
+        "pylint",
+        "golangci-lint-langserver",
+        "csharpier",
+        "terraform-ls",
+        "dockerfile-language-server",
+        "gopls",
+        "gofumpt",
+        "goimports",
+        "typescript-language-server",
+        "shfmt",
+        "markdownlint",
+        "taplo",
+      },
+    },
+  },
+  {
+    "jay-babu/mason-nvim-dap.nvim",
+    opts = {
+      ensure_installed = { "delve" },
+    },
+  },
   --- Editor
   { "ray-x/guihua.lua" },
   {
@@ -15,10 +140,15 @@ return {
       }
     end,
   },
-  ["hashivim/vim-terraform"] = {},
+  "hashivim/vim-terraform",
   -- Languages
   {
     "ray-x/go.nvim",
+    requires = {
+      "ray-x/guihua.lua",
+      "neovim/nvim-lspconfig",
+      "nvim-treesitter/nvim-treesitter",
+    },
     config = function()
       require("go").setup {
         run_in_floaterm = true,
@@ -29,24 +159,18 @@ return {
         },
       }
     end,
+    event = { "CmdlineEnter" },
+    ft = { "go", "gomod" },
+    build = ':lua require("go.install").update_all_sync()',
   },
-  {
-    "simrat39/rust-tools.nvim",
-    after = "mason-lspconfig.nvim",
-    config = function()
-      require("rust-tools").setup {
-        server = astronvim.lsp.server_settings "rust_analyzer",
-      }
-    end,
-    ft = { "rust" },
-  },
+  "simrat39/rust-tools.nvim",
   {
     "saecki/crates.nvim",
     requires = { "nvim-lua/plenary.nvim" },
     config = function() require("crates").setup() end,
   },
   -- Git
-  { "akinsho/git-conflict.nvim", tag = "*", config = function() require("git-conflict").setup() end },
+  { "akinsho/git-conflict.nvim", config = function() require("git-conflict").setup {} end },
   -- Test
   {
     "nvim-neotest/neotest",
@@ -83,7 +207,7 @@ return {
   -- Debug
   {
     "theHamsta/nvim-dap-virtual-text",
-    config = function() require("nvim-dap-virtual-text").setup() end,
+    config = function() require("nvim-dap-virtual-text").setup {} end,
   },
   {
     "leoluz/nvim-dap-go",
