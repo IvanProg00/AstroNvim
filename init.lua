@@ -56,6 +56,7 @@ local config = {
   },
   mappings = {
     n = {
+      ["<leader>T"] = { name = "Test" },
       ["<leader>Trr"] = { ':lua require("neotest").run.run()<CR>', desc = "Test" },
       ["<leader>Trf"] = { ':lua require("neotest").run.run(vim.fn.expand("%"))<CR>', desc = "Test file" },
       ["<leader>Trs"] = { ':lua require("neotest").run.stop()<CR>' },
