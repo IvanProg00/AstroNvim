@@ -1,9 +1,9 @@
 local config = {
   updater = {
     remote = "origin",
-    channel = "nightly",
+    channel = "stable",
     version = "latest",
-    branch = "nightly",
+    branch = nil,
     commit = nil,
     pin_plugins = nil,
     skip_prompts = false,
@@ -16,9 +16,7 @@ local config = {
   },
   lsp = {
     servers = {},
-    skip_setup = {
-      "rust_analyzer",
-    },
+    skip_setup = {},
     formatting = {
       format_on_save = {
         enabled = true,
