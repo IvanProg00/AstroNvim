@@ -36,6 +36,25 @@ local config = {
       },
     },
     config = {
+      rust_analyzer = {
+        settings = {
+          ["rust-analyzer"] = {
+            cargo = {
+              loadOutDirsFromCheck = true,
+              features = "all",
+            },
+            checkOnSave = {
+              command = "clippy",
+            },
+            procMacro = {
+              enable = true,
+            },
+            experimental = {
+              procAttrMacros = true,
+            },
+          },
+        },
+      },
       yamlls = {
         settings = {
           yaml = {
@@ -109,7 +128,8 @@ local config = {
     --   },
     -- },
   },
-  polish = function() end,
+  polish = function()
+  end,
 }
 
 return config
