@@ -16,9 +16,7 @@ local config = {
   },
   lsp = {
     servers = {},
-    skip_setup = {
-      "taplo",
-    },
+    skip_setup = {},
     formatting = {
       format_on_save = {
         enabled = true,
@@ -130,8 +128,7 @@ local config = {
     --   },
     -- },
   },
-  polish = function()
-  end,
+  polish = function() end,
 }
 
 return config
