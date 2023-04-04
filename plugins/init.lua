@@ -31,7 +31,16 @@ return {
       config.sources = {
         b.diagnostics.golangci_lint,
         b.diagnostics.markdownlint,
+        b.diagnostics.credo,
 
+        b.formatting.mix.with {
+          filetypes = {
+            "elixir",
+            "ex",
+            "exs",
+            "heex",
+          },
+        },
         b.formatting.stylua,
         b.formatting.prettier,
         b.formatting.goimports,
@@ -69,6 +78,9 @@ return {
         "dockerfile",
         "sql",
         "http",
+        "elixir",
+        "heex",
+        "eex",
       },
     },
   },
@@ -112,6 +124,7 @@ return {
         "shfmt",
         "markdownlint",
         "taplo",
+        "elixir-ls",
       },
     },
   },
