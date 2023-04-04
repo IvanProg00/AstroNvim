@@ -1,4 +1,4 @@
-local config = {
+return {
   updater = {
     remote = "origin",
     channel = "stable",
@@ -119,5 +119,3 @@ local config = {
   polish = function()
   end,
 }
-
-return config

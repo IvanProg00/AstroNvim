@@ -1,21 +1,5 @@
 return {
   {
-    "goolord/alpha-nvim",
-    opts = function(_, opts)
-      opts.section.header.val = {
-        [[  ██████   █████                   █████   █████  ███                  ]],
-        [[ ░░██████ ░░███                   ░░███   ░░███  ░░░                   ]],
-        [[  ░███░███ ░███   ██████   ██████  ░███    ░███  ████  █████████████   ]],
-        [[  ░███░░███░███  ███░░███ ███░░███ ░███    ░███ ░░███ ░░███░░███░░███  ]],
-        [[  ░███ ░░██████ ░███████ ░███ ░███ ░░███   ███   ░███  ░███ ░███ ░███  ]],
-        [[  ░███  ░░█████ ░███░░░  ░███ ░███  ░░░█████░    ░███  ░███ ░███ ░███  ]],
-        [[  █████  ░░█████░░██████ ░░██████     ░░███      █████ █████░███ █████ ]],
-        [[ ░░░░░    ░░░░░  ░░░░░░   ░░░░░░       ░░░      ░░░░░ ░░░░░ ░░░ ░░░░░  ]],
-      }
-      return opts
-    end,
-  },
-  {
     "jose-elias-alvarez/null-ls.nvim",
     opts = function(_, config)
       local null_ls = require "null-ls"
@@ -90,6 +74,8 @@ return {
       ensure_installed = {
         "lua_ls",
         "rust_analyzer",
+        "pyright",
+        "ruff_lsp",
       },
     },
   },
@@ -100,7 +86,8 @@ return {
       automatic_setup = true,
       ensure_installed = {
         "actionlint",
-        "autopep8",
+        "black",
+        "isort",
         "eslint-lsp",
         "gitlint",
         "prettier",
@@ -112,7 +99,6 @@ return {
         "json-lsp",
         "stylua",
         "yaml-language-server",
-        "pylint",
         "golangci-lint-langserver",
         "csharpier",
         "terraform-ls",
@@ -126,12 +112,6 @@ return {
         "taplo",
         "elixir-ls",
       },
-    },
-  },
-  {
-    "jay-babu/mason-nvim-dap.nvim",
-    opts = {
-      ensure_installed = { "delve" },
     },
   },
   -- Editor
@@ -178,6 +158,11 @@ return {
     "saecki/crates.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
   },
+  {
+    "linux-cultist/venv-selector.nvim",
+    opts = {},
+    keys = { { "<leader>lv", "<cmd>:VenvSelect<cr>", desc = "Select VirtualEnv" } },
+  },
   -- Git
   { "akinsho/git-conflict.nvim", config = function() require("git-conflict").setup {} end },
   -- Test
@@ -212,8 +197,15 @@ return {
         },
       }
     end,
+    ft = { "go", "rust" },
   },
   -- Debug
+  {
+    "jay-babu/mason-nvim-dap.nvim",
+    opts = {
+      ensure_installed = { "delve", "python" },
+    },
+  },
   {
     "theHamsta/nvim-dap-virtual-text",
     config = function() require("nvim-dap-virtual-text").setup {} end,
@@ -221,5 +213,6 @@ return {
   {
     "leoluz/nvim-dap-go",
     config = function() require("dap-go").setup() end,
+    ft = "go",
   },
 }
