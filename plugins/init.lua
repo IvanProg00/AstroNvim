@@ -26,12 +26,13 @@ return {
           },
         },
         b.formatting.stylua,
-        b.formatting.prettier,
+        b.formatting.prettierd,
         b.formatting.goimports,
         b.formatting.shfmt,
         b.formatting.gofumpt,
         b.formatting.csharpier,
         b.formatting.taplo,
+        b.formatting.djlint,
       }
 
       return config
@@ -90,7 +91,7 @@ return {
         "isort",
         "eslint-lsp",
         "gitlint",
-        "prettier",
+        "prettierd",
         "lua-language-server",
         "css-lsp",
         "html-lsp",
@@ -111,6 +112,7 @@ return {
         "markdownlint",
         "taplo",
         "elixir-ls",
+        "djlint",
       },
     },
   },
