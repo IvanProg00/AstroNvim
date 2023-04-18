@@ -66,6 +66,18 @@ return {
           },
         },
       },
+      emmet_ls = {
+        filetypes = {
+          "html",
+          "css",
+          "javascript",
+          "jsx",
+          "typescript",
+          "tsx",
+          "eelixir",
+          "heex",
+        },
+      },
     },
     setup_handlers = {
       rust_analyzer = function(_, opts) require("rust-tools").setup { server = opts } end,
