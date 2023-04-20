@@ -55,7 +55,6 @@ return {
         "c_sharp",
         "html",
         "css",
-        "help",
         "vim",
         "markdown",
         "fish",
