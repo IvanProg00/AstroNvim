@@ -1,0 +1,55 @@
+return {
+  {
+    "williamboman/mason-lspconfig.nvim",
+    opts = {
+      ensure_installed = {
+        "lua_ls",
+        "rust_analyzer",
+        "pyright",
+        "ruff_lsp",
+      },
+    },
+  },
+  {
+    "jay-babu/mason-null-ls.nvim",
+    opts = {
+      automatic_installation = true,
+      automatic_setup = true,
+      ensure_installed = {
+        "actionlint",
+        "black",
+        "isort",
+        "eslint-lsp",
+        "gitlint",
+        "prettierd",
+        "lua-language-server",
+        "css-lsp",
+        "html-lsp",
+        "typescript-language-server",
+        "emmet-ls",
+        "json-lsp",
+        "stylua",
+        "yaml-language-server",
+        "golangci-lint-langserver",
+        "csharpier",
+        "terraform-ls",
+        "dockerfile-language-server",
+        "gopls",
+        "gofumpt",
+        "goimports",
+        "typescript-language-server",
+        "shfmt",
+        "markdownlint",
+        "taplo",
+        "elixir-ls",
+        "djlint",
+      },
+    },
+  },
+  {
+    "jay-babu/mason-nvim-dap.nvim",
+    opts = {
+      ensure_installed = { "delve", "python", "elixirls" },
+    },
+  },
+}
