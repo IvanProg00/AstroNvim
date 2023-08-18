@@ -7,6 +7,7 @@ return {
     ["<leader>To"] = { ':lua require("neotest").output.open({ short = true, enter = true })<CR>' },
     ["<leader>Ts"] = { ':lua require("neotest").summary.toggle()<CR>' },
     ["<leader>Td"] = { ':lua require("neotest").diagnostic()<CR>' },
+    ["<leader>fT"] = { ":TodoTelescope keywords=TODO,FIX<CR>" },
   },
   t = {},
 }

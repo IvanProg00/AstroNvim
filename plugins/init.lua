@@ -60,11 +60,13 @@ return {
         "fish",
         "bash",
         "dockerfile",
+        "terraform",
         "sql",
         "http",
         "elixir",
         "heex",
         "eex",
+        "solidity",
       },
     },
   },
@@ -73,7 +75,7 @@ return {
   {
     "folke/todo-comments.nvim",
     dependencies = "nvim-lua/plenary.nvim",
-    config = function() require("todo-comments").setup {} end,
+    opts = {},
     event = "VeryLazy",
   },
   {
@@ -118,7 +120,7 @@ return {
     keys = { { "<leader>lv", "<cmd>:VenvSelect<cr>", desc = "Select VirtualEnv" } },
   },
   -- Git
-  { "akinsho/git-conflict.nvim", config = function() require("git-conflict").setup {} end },
+  { "akinsho/git-conflict.nvim", config = true },
   -- Test
   {
     "nvim-neotest/neotest",
