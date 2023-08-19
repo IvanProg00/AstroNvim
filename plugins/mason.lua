@@ -7,6 +7,7 @@ return {
         "rust_analyzer",
         "pyright",
         "ruff_lsp",
+        "terraformls",
       },
     },
   },
