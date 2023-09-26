@@ -118,6 +118,33 @@ return {
     "linux-cultist/venv-selector.nvim",
     opts = {},
     keys = { { "<leader>lv", "<cmd>:VenvSelect<cr>", desc = "Select VirtualEnv" } },
+    ft = "python",
+  },
+  {
+    "elixir-tools/elixir-tools.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    version = "*",
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      local elixir = require "elixir"
+      local elixirls = require "elixir.elixirls"
+
+      elixir.setup {
+        nextls = {},
+        credo = {},
+        elixirls = {
+          enable = true,
+          settings = elixirls.settings {
+            dialyzerEnabled = true,
+            enableTestLenses = false,
+            suggestSpecs = true,
+          },
+        },
+      }
+    end,
+    ft = "elixir",
   },
   -- Git
   { "akinsho/git-conflict.nvim", config = true },
